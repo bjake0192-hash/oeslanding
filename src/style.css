@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --color-oes-dark: #0f172a;
+  --color-oes-green: #22c55e;
+  --color-oes-gray: #f8fafc;
+  --font-sans: 'Inter', sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-slate-800);
+    -webkit-font-smoothing: antialiased;
+  }
+}
