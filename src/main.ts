@@ -113,7 +113,7 @@ function setMode(mode: Mode) {
   
   const iconContainer = document.getElementById('business-icon-container');
   if (iconContainer) {
-    iconContainer.innerHTML = \`<i data-lucide="\${data.businessIcon}" class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>\`;
+    iconContainer.innerHTML = `<i data-lucide="${data.businessIcon}" class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>`;
     initIcons(); // re-initialize to convert the new <i> tag into an SVG
   }
 
