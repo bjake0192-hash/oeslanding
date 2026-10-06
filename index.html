@@ -71,9 +71,10 @@
           <!-- Form (Right - Liquid Glass Pane) -->
           <div class="lg:col-span-5 relative group lg:w-[95%] lg:ml-auto order-1 lg:order-2 z-20">
             <!-- Glowing border effect -->
+            <!-- Note: pointer-events-none added to prevent intercepting taps on mobile -->
             <div class="absolute -inset-[2px] bg-gradient-to-r from-teal-500/40 via-cyan-500/40 to-teal-500/40 rounded-[1.25rem] blur-md opacity-60 animate-pulse pointer-events-none lg:animate-none lg:-inset-[1px] lg:bg-gradient-to-b lg:from-teal-500/30 lg:to-blue-500/30 lg:blur-sm lg:opacity-50 lg:group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
 
-            <div class="bg-[#0b1121]/40 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] relative z-10 overflow-hidden flex flex-col h-[520px]">
+            <div class="bg-[#0b1121]/90 lg:bg-[#0b1121]/40 backdrop-blur-md lg:backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] relative z-10 overflow-hidden flex flex-col h-[520px]">
               
               <!-- Progress Bar (Glass Header) -->
               <div class="bg-white/[0.02] border-b border-white/10 px-4 sm:px-6 md:px-8 py-4 sm:py-5 relative z-20">
@@ -236,7 +237,7 @@
     <!-- Introduce the Big Differentiator (Liquid Glass Banner) -->
     <section class="py-24 relative z-10">
       <div class="container mx-auto px-6 max-w-5xl">
-        <div class="bg-white/[0.03] backdrop-blur-3xl border border-white/10 rounded-3xl p-12 md:p-20 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] relative overflow-hidden group">
+        <div class="bg-white/[0.03] backdrop-blur-lg lg:backdrop-blur-3xl border border-white/10 rounded-3xl p-12 md:p-20 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] relative overflow-hidden group">
           <!-- Inner subtle glow -->
           <div class="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
           
@@ -303,28 +304,28 @@
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <div class="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
+          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
             <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
             <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">1</div>
             <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">TELL US ABOUT YOUR PROPERTY</h3>
             <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">A few quick questions help us understand your energy needs.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
+          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
             <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
             <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">2</div>
             <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">WE ANALYSE THE NUMBERS</h3>
             <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">We review your energy usage, property and solar potential.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
+          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
             <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
             <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">3</div>
             <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">YOU GET HONEST ADVICE</h3>
             <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">We explain what makes financial sense, without pressure.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
+          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
             <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
             <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">4</div>
             <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">WE MATCH YOU LOCALLY</h3>
@@ -339,7 +340,7 @@
     <section class="py-24 relative z-10 mb-10">
       <div class="container mx-auto px-6 max-w-4xl text-center relative">
         <div class="absolute inset-0 bg-teal-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-        <div class="bg-white/[0.03] backdrop-blur-2xl border border-white/10 rounded-3xl p-12 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative z-10">
+        <div class="bg-white/[0.03] backdrop-blur-md lg:backdrop-blur-2xl border border-white/10 rounded-3xl p-12 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative z-10">
           <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">How much could solar save you?</h2>
           <p class="text-xl text-teal-300 mb-10 font-light">Find out with a free, no-obligation Open Energy assessment.</p>
           
@@ -396,7 +397,7 @@
     </style>
 
     <!-- Social Proof Overlay Pill -->
-  <div id="social-proof-pill" class="fixed bottom-6 right-6 z-50 transform transition-all duration-500 translate-y-10 opacity-0 bg-[#0b1121]/70 backdrop-blur-xl border border-teal-500/30 shadow-[0_4px_20px_rgba(20,184,166,0.2)] rounded-full px-5 py-3 flex items-center gap-3">
+  <div id="social-proof-pill" class="fixed bottom-6 right-6 z-50 transform transition-all duration-500 translate-y-10 opacity-0 bg-[#0b1121]/90 lg:bg-[#0b1121]/70 backdrop-blur-md lg:backdrop-blur-xl border border-teal-500/30 shadow-[0_4px_20px_rgba(20,184,166,0.2)] rounded-full px-5 py-3 flex items-center gap-3">
     <div class="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0 border border-teal-500/30">
       <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i>
     </div>
