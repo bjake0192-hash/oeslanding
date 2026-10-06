@@ -217,3 +217,57 @@ form.addEventListener('submit', () => {
 (window as any).showSuccessStep = () => {
   goToStep('success');
 };
+
+// --- Social Proof Overlay Pill Logic ---
+function initSocialProofPill() {
+  const socialProofData = [
+    { name: 'Tomas', savings: '85', location: 'Liverpool' },
+    { name: 'Kairo Studio', savings: '120', location: 'London' },
+    { name: 'Robert', savings: '480', location: 'Derby' },
+    { name: 'Alex (Commercial)', savings: '5200', location: 'Glasgow' }
+  ];
+
+  let currentProofIndex = 0;
+  const pillElement = document.getElementById('social-proof-pill');
+  const textElement = document.getElementById('social-proof-text');
+
+  if (!pillElement || !textElement) return;
+
+  function cycleProof() {
+    // 1. Hide current pill
+    pillElement!.classList.remove('translate-y-0', 'opacity-100');
+    pillElement!.classList.add('translate-y-10', 'opacity-0');
+
+    // 2. Wait for fade out animation (500ms based on duration-500 class)
+    setTimeout(() => {
+      const data = socialProofData[currentProofIndex];
+      currentProofIndex = (currentProofIndex + 1) % socialProofData.length;
+
+      textElement!.innerHTML = `<span class="font-bold text-white">${data.name}</span> in ${data.location} saved <span class="text-teal-400 font-bold">£${data.savings}</span> a month.`;
+
+      // 3. Show new pill
+      pillElement!.classList.remove('translate-y-10', 'opacity-0');
+      pillElement!.classList.add('translate-y-0', 'opacity-100');
+
+      // 4. Schedule next swap in 5 seconds
+      setTimeout(cycleProof, 5000);
+    }, 500);
+  }
+
+  // Initial start
+  const initialData = socialProofData[0];
+  currentProofIndex = 1;
+  textElement!.innerHTML = `<span class="font-bold text-white">${initialData.name}</span> in ${initialData.location} saved <span class="text-teal-400 font-bold">£${initialData.savings}</span> a month.`;
+  
+  setTimeout(() => {
+    pillElement!.classList.remove('translate-y-10', 'opacity-0');
+    pillElement!.classList.add('translate-y-0', 'opacity-100');
+    
+    // Start cycle after 5 seconds
+    setTimeout(cycleProof, 5000);
+  }, 500);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  initSocialProofPill();
+});
