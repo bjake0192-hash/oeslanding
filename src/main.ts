@@ -1,131 +1,219 @@
 import './style.css'
-import { createIcons, CheckCircle, Zap, Shield, Leaf, Wrench, ThumbsUp, MessageSquare, ClipboardCheck, FileText, Sun, Clock, Lock, User, Building, Phone, Mail, MapPin, ChevronDown, ArrowRight, Home } from 'lucide';
+import { createIcons, CheckCircle, ShieldCheck, ArrowRight, ArrowLeft, Building, Home, MapPin, User, Phone, Mail, Check, CheckCircle2, Zap } from 'lucide';
 
 function initIcons() {
   createIcons({
     icons: {
       CheckCircle,
-      Zap,
-      Shield,
-      Leaf,
-      Wrench,
-      ThumbsUp,
-      MessageSquare,
-      ClipboardCheck,
-      FileText,
-      Sun,
-      Clock,
-      Lock,
-      User,
+      ShieldCheck,
+      ArrowRight,
+      ArrowLeft,
       Building,
+      Home,
+      MapPin,
+      User,
       Phone,
       Mail,
-      MapPin,
-      ChevronDown,
-      ArrowRight,
-      Home
+      Check,
+      CheckCircle2,
+      Zap
     }
   });
 }
 
 initIcons();
 
-// --- Segment State Management ---
+// --- Multi-Step Form Logic ---
 
-type Mode = 'commercial' | 'residential';
-let currentMode: Mode = 'commercial';
+let currentStep = 1;
 
-const content = {
-  commercial: {
-    bg: '/hero-bg.jpg',
-    title: 'Slash Your Business Energy Bills with <span class="text-green-500">Solar.</span>',
-    subtitle: 'At Open Energy Services, we help UK businesses cut energy costs with bespoke solar solutions and end-to-end project management.',
-    businessPlaceholder: 'Business Name',
-    businessIcon: 'building',
-    spendOptions: `
-      <option value="" disabled selected>Estimated Monthly Electricity Spend</option>
-      <option value="under_500">Under £500</option>
-      <option value="500_1000">£500 - £1,000</option>
-      <option value="1000_5000">£1,000 - £5,000</option>
-      <option value="over_5000">Over £5,000</option>
-    `,
-    whyTitle: 'Why Businesses Choose OES',
-    step1Desc: 'We learn about your business and energy goals.',
-  },
-  residential: {
-    bg: '/hero-bg-residential.jpg',
-    title: 'Slash Your Home Energy Bills with <span class="text-green-500">Solar.</span>',
-    subtitle: 'At Open Energy Services, we help UK homeowners cut energy costs with bespoke solar solutions and seamless installation.',
-    businessPlaceholder: 'Property Type (e.g. Detached, Semi)',
-    businessIcon: 'home',
-    spendOptions: `
-      <option value="" disabled selected>Estimated Monthly Electricity Spend</option>
-      <option value="under_100">Under £100</option>
-      <option value="100_200">£100 - £200</option>
-      <option value="200_300">£200 - £300</option>
-      <option value="over_300">Over £300</option>
-    `,
-    whyTitle: 'Why Homeowners Choose OES',
-    step1Desc: 'We learn about your home and energy goals.',
-  }
-};
+const steps = [
+  document.getElementById('step-1'),
+  document.getElementById('step-2'),
+  document.getElementById('step-3'),
+  document.getElementById('step-4'),
+  document.getElementById('step-success')
+];
 
-const btnCommercial = document.getElementById('btn-commercial');
-const btnResidential = document.getElementById('btn-residential');
-
-function setMode(mode: Mode) {
-  if (currentMode === mode) return;
-  currentMode = mode;
+function updateProgress(step: number | 'success') {
+  if (step === 'success') return;
   
-  // Update buttons
-  if (mode === 'commercial') {
-    btnCommercial?.classList.replace('bg-transparent', 'bg-green-500');
-    btnCommercial?.classList.replace('text-slate-300', 'text-slate-900');
-    btnCommercial?.classList.add('shadow-sm');
+  for (let i = 1; i <= 4; i++) {
+    const indicator = document.getElementById(`step-indicator-${i}`);
+    const line = document.getElementById(`line-${i}`);
     
-    btnResidential?.classList.replace('bg-green-500', 'bg-transparent');
-    btnResidential?.classList.replace('text-slate-900', 'text-slate-300');
-    btnResidential?.classList.remove('shadow-sm');
-  } else {
-    btnResidential?.classList.replace('bg-transparent', 'bg-green-500');
-    btnResidential?.classList.replace('text-slate-300', 'text-slate-900');
-    btnResidential?.classList.add('shadow-sm');
+    if (!indicator) continue;
     
-    btnCommercial?.classList.replace('bg-green-500', 'bg-transparent');
-    btnCommercial?.classList.replace('text-slate-900', 'text-slate-300');
-    btnCommercial?.classList.remove('shadow-sm');
+    const numberSpan = indicator.children[0] as HTMLElement;
+    const textSpan = indicator.children[1] as HTMLElement;
+    
+    if (i < step) {
+      // Completed
+      numberSpan.className = 'w-6 h-6 rounded-full bg-teal-500 text-white flex items-center justify-center transition-all shadow-[0_0_12px_rgba(20,184,166,0.5)]';
+      textSpan.className = 'hidden sm:inline text-teal-300 transition-colors drop-shadow-md';
+      if (line) line.className = 'flex-grow h-px bg-teal-500/30 mx-3 transition-colors';
+    } else if (i === step) {
+      // Current
+      numberSpan.className = 'w-6 h-6 rounded-full bg-teal-400 text-[#0b1121] flex items-center justify-center transition-all shadow-[0_0_20px_rgba(45,212,191,0.6)] font-bold';
+      textSpan.className = 'hidden sm:inline text-white font-bold transition-colors drop-shadow-md';
+      if (line) line.className = 'flex-grow h-px bg-white/10 mx-3 transition-colors';
+    } else {
+      // Future
+      numberSpan.className = 'w-6 h-6 rounded-full bg-white/5 border border-white/10 text-white/40 flex items-center justify-center transition-all';
+      textSpan.className = 'hidden sm:inline text-white/40 transition-colors';
+      if (line) line.className = 'flex-grow h-px bg-white/10 mx-3 transition-colors';
+    }
   }
-
-  // Update content
-  const data = content[mode];
-  
-  const heroBg = document.getElementById('hero-bg') as HTMLImageElement;
-  if (heroBg) heroBg.src = data.bg;
-  
-  const heroTitle = document.getElementById('hero-title');
-  if (heroTitle) heroTitle.innerHTML = data.title;
-  
-  const heroSubtitle = document.getElementById('hero-subtitle');
-  if (heroSubtitle) heroSubtitle.innerText = data.subtitle;
-  
-  const businessInput = document.getElementById('business-input') as HTMLInputElement;
-  if (businessInput) businessInput.placeholder = data.businessPlaceholder;
-  
-  const iconContainer = document.getElementById('business-icon-container');
-  if (iconContainer) {
-    iconContainer.innerHTML = `<i data-lucide="${data.businessIcon}" class="w-5 h-5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>`;
-    initIcons(); // re-initialize to convert the new <i> tag into an SVG
-  }
-
-  const spendSelect = document.getElementById('spend-select') as HTMLSelectElement;
-  if (spendSelect) spendSelect.innerHTML = data.spendOptions;
-  
-  const whyTitle = document.getElementById('why-choose-title');
-  if (whyTitle) whyTitle.innerText = data.whyTitle;
-  
-  const step1Desc = document.getElementById('step-1-desc');
-  if (step1Desc) step1Desc.innerText = data.step1Desc;
 }
 
-btnCommercial?.addEventListener('click', () => setMode('commercial'));
-btnResidential?.addEventListener('click', () => setMode('residential'));
+function goToStep(targetStep: number | 'success') {
+  // Hide all
+  steps.forEach(s => {
+    if (s) {
+      s.classList.remove('translate-x-0');
+      s.classList.add('-translate-x-full');
+      s.style.opacity = '0';
+      s.style.pointerEvents = 'none';
+    }
+  });
+
+  const targetEl = targetStep === 'success' ? steps[4] : steps[(targetStep as number) - 1];
+  
+  if (targetEl) {
+    // Small delay to allow previous step to animate out
+    setTimeout(() => {
+      targetEl.classList.remove('-translate-x-full', 'translate-x-full');
+      targetEl.classList.add('translate-x-0');
+      targetEl.style.opacity = '1';
+      targetEl.style.pointerEvents = 'auto';
+    }, 50);
+  }
+
+  if (targetStep !== 'success') {
+    currentStep = targetStep as number;
+    updateProgress(currentStep);
+  }
+}
+
+// Initial setup: ensure only step 1 is visible
+steps.forEach((s, i) => {
+  if (s) {
+    if (i === 0) {
+      s.classList.add('translate-x-0');
+      s.classList.remove('translate-x-full', '-translate-x-full');
+      s.style.opacity = '1';
+      s.style.pointerEvents = 'auto';
+    } else {
+      s.classList.add('translate-x-full');
+      s.classList.remove('translate-x-0', '-translate-x-full');
+      s.style.opacity = '0';
+      s.style.pointerEvents = 'none';
+    }
+  }
+});
+updateProgress(1);
+
+// Step 1: Property
+const propertyBtns = document.querySelectorAll('.property-btn');
+const inputPropertyType = document.getElementById('input-property-type') as HTMLInputElement;
+const businessNameGroup = document.getElementById('business-name-group');
+const inputBusiness = document.getElementById('input-business') as HTMLInputElement;
+
+propertyBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
+    if (val) {
+      inputPropertyType.value = val;
+      if (val === 'Business') {
+        businessNameGroup?.classList.remove('hidden');
+        inputBusiness.required = true;
+      } else {
+        businessNameGroup?.classList.add('hidden');
+        inputBusiness.required = false;
+        inputBusiness.value = '';
+      }
+      goToStep(2);
+    }
+  });
+});
+
+// Step 2: Goal
+const goalBtns = document.querySelectorAll('.goal-btn');
+const inputGoal = document.getElementById('input-goal') as HTMLInputElement;
+
+goalBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
+    if (val) {
+      inputGoal.value = val;
+      goToStep(3);
+    }
+  });
+});
+
+// Step 3: Spend
+const spendBtns = document.querySelectorAll('.spend-btn');
+const inputSpend = document.getElementById('input-spend') as HTMLInputElement;
+
+spendBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
+    if (val) {
+      inputSpend.value = val;
+      goToStep(4);
+    }
+  });
+});
+
+// Back Buttons
+const backBtns = document.querySelectorAll('.btn-back');
+backBtns.forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const target = (e.currentTarget as HTMLElement).getAttribute('data-target');
+    if (target) {
+      // For backward animation, we should technically slide the current one to the right
+      // and the target one from the left.
+      const currentEl = steps[currentStep - 1];
+      if (currentEl) {
+        currentEl.classList.remove('translate-x-0');
+        currentEl.classList.add('translate-x-full');
+        currentEl.style.opacity = '0';
+        currentEl.style.pointerEvents = 'none';
+      }
+
+      currentStep = parseInt(target, 10);
+      const targetEl = steps[currentStep - 1];
+      
+      if (targetEl) {
+        setTimeout(() => {
+          targetEl.classList.remove('-translate-x-full', 'translate-x-full');
+          targetEl.classList.add('translate-x-0');
+          targetEl.style.opacity = '1';
+          targetEl.style.pointerEvents = 'auto';
+        }, 50);
+      }
+      
+      updateProgress(currentStep);
+    }
+  });
+});
+
+// Form Submission
+const form = document.getElementById('assessment-form') as HTMLFormElement;
+const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+
+form.addEventListener('submit', () => {
+  (window as any).submitted = true;
+  submitBtn.innerHTML = `
+    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+      <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+      <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+    </svg>
+    <span>PROCESSING...</span>
+  `;
+  submitBtn.disabled = true;
+});
+
+(window as any).showSuccessStep = () => {
+  goToStep('success');
+};
