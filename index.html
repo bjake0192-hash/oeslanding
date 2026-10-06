@@ -13,13 +13,14 @@
     <!-- Global Liquid Glass Background Effect -->
     <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
       <!-- Deep dark base image with low opacity -->
-      <img src="/hero-bg.jpg" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-[0.05] mix-blend-luminosity" />
+      <img src="/hero-bg.jpg" fetchpriority="high" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-[0.05] mix-blend-luminosity" />
       
       <!-- Glowing Orbs for vibrant Glass refraction -->
-      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-teal-500/30 rounded-full blur-[140px] mix-blend-screen animate-[pulse_8s_ease-in-out_infinite]"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/30 rounded-full blur-[140px] mix-blend-screen animate-[pulse_10s_ease-in-out_infinite]"></div>
-      <div class="absolute top-[30%] left-[50%] w-[40%] h-[40%] bg-indigo-500/20 rounded-full blur-[120px] mix-blend-screen animate-[pulse_12s_ease-in-out_infinite]"></div>
-      <div class="absolute top-[60%] left-[-5%] w-[30%] h-[30%] bg-cyan-400/15 rounded-full blur-[100px] mix-blend-screen"></div>
+      <!-- Reduced blur and removed blend modes on mobile for performance -->
+      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-teal-500/30 rounded-full blur-3xl lg:blur-[140px] lg:mix-blend-screen animate-[pulse_8s_ease-in-out_infinite]"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/30 rounded-full blur-3xl lg:blur-[140px] lg:mix-blend-screen animate-[pulse_10s_ease-in-out_infinite]"></div>
+      <div class="absolute top-[30%] left-[50%] w-[40%] h-[40%] bg-indigo-500/20 rounded-full blur-3xl lg:blur-[120px] lg:mix-blend-screen animate-[pulse_12s_ease-in-out_infinite]"></div>
+      <div class="absolute top-[60%] left-[-5%] w-[30%] h-[30%] bg-cyan-400/15 rounded-full blur-3xl lg:blur-[100px] lg:mix-blend-screen"></div>
       
       <!-- Subtle noise overlay -->
       <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-40 mix-blend-overlay"></div>
@@ -31,7 +32,7 @@
         <div class="flex items-center gap-4">
           <!-- Logo -->
           <a href="/" class="block h-20 flex items-center -ml-12">
-            <img src="/oem-logo.png" alt="Open Energy Services Logo" class="h-20 w-auto scale-[3.5] origin-left brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+            <img src="/oem-logo.png" fetchpriority="high" alt="Open Energy Services Logo" class="h-20 w-auto scale-[3.5] origin-left brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
           </a>
         </div>
       </div>
@@ -287,7 +288,7 @@
           </div>
           <div class="relative h-[450px] rounded-3xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10 group">
              <div class="absolute inset-0 bg-teal-500/10 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-             <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%2C%20realistic%20photograph%20of%20a%20modern%20British%20home%20and%20commercial%20building%20with%20sleek%20solar%20panels%20on%20the%20roof%2C%20a%20friendly%20consultant%20or%20installer%20shaking%20hands%20with%20a%20business%20owner%2C%20high-end%20cinematic%20lighting%2C%20corporate%20and%20trustworthy%2C%20clean%20and%20modern%20aesthetic&image_size=landscape_4_3" alt="Local Installation Consultant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+             <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%2C%20realistic%20photograph%20of%20a%20modern%20British%20home%20and%20commercial%20building%20with%20sleek%20solar%20panels%20on%20the%20roof%2C%20a%20friendly%20consultant%20or%20installer%20shaking%20hands%20with%20a%20business%20owner%2C%20high-end%20cinematic%20lighting%2C%20corporate%20and%20trustworthy%2C%20clean%20and%20modern%20aesthetic&image_size=landscape_4_3" loading="lazy" alt="Local Installation Consultant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
         </div>
       </div>
@@ -363,7 +364,7 @@
       <div class="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center">
           <a href="/" class="block">
-            <img src="/oem-logo.png" alt="Open Energy Services Logo" class="h-10 w-auto scale-150 origin-left opacity-50 hover:opacity-100 transition-opacity brightness-0 invert" />
+            <img src="/oem-logo.png" loading="lazy" alt="Open Energy Services Logo" class="h-10 w-auto scale-150 origin-left opacity-50 hover:opacity-100 transition-opacity brightness-0 invert" />
           </a>
         </div>
         
