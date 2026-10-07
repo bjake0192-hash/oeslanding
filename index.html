@@ -8,31 +8,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
-  <body class="bg-[#0b1121] text-white font-sans antialiased min-h-screen flex flex-col relative selection:bg-teal-500/30 selection:text-teal-200">
+  <body class="bg-slate-50 text-gray-900 font-sans antialiased min-h-screen flex flex-col relative selection:bg-orange-500/30 selection:text-orange-900">
 
-    <!-- Global Liquid Glass Background Effect -->
-    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-      <!-- Deep dark base image with low opacity -->
-      <img src="/hero-bg.jpg" fetchpriority="high" alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-[0.05] mix-blend-luminosity" />
-      
-      <!-- Glowing Orbs for vibrant Glass refraction -->
-      <!-- Reduced blur and removed blend modes on mobile for performance -->
-      <div class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-teal-500/30 rounded-full blur-3xl lg:blur-[140px] lg:mix-blend-screen animate-[pulse_8s_ease-in-out_infinite]"></div>
-      <div class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-blue-600/30 rounded-full blur-3xl lg:blur-[140px] lg:mix-blend-screen animate-[pulse_10s_ease-in-out_infinite]"></div>
-      <div class="absolute top-[30%] left-[50%] w-[40%] h-[40%] bg-indigo-500/20 rounded-full blur-3xl lg:blur-[120px] lg:mix-blend-screen animate-[pulse_12s_ease-in-out_infinite]"></div>
-      <div class="absolute top-[60%] left-[-5%] w-[30%] h-[30%] bg-cyan-400/15 rounded-full blur-3xl lg:blur-[100px] lg:mix-blend-screen"></div>
-      
+    <!-- Global Light Background Effect -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden bg-slate-50">
+      <!-- High-quality Unsplash Background Image -->
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2560&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-[0.15] mix-blend-multiply" alt="Modern Architecture Background" />
       <!-- Subtle noise overlay -->
-      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-40 mix-blend-overlay"></div>
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')] opacity-[0.03] mix-blend-overlay"></div>
+      <div class="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] bg-orange-300/20 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-orange-400/10 rounded-full blur-[120px]"></div>
     </div>
 
-    <!-- Navigation (Liquid Glass) -->
-    <nav class="fixed top-0 left-0 right-0 z-50 w-full bg-[#0b1121]/50 backdrop-blur-xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] transition-all duration-300">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 w-full bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-sm transition-all duration-300">
       <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-4">
           <!-- Logo -->
           <a href="/" class="block h-20 flex items-center -ml-12">
-            <img src="/oem-logo.png" fetchpriority="high" alt="Open Energy Services Logo" class="h-20 w-auto scale-[3.5] origin-left brightness-0 invert opacity-90 hover:opacity-100 transition-opacity" />
+            <img src="/oem-logo.png" fetchpriority="high" alt="Open Energy Services Logo" class="h-20 w-auto scale-[3.5] origin-left opacity-90 hover:opacity-100 transition-opacity" />
           </a>
         </div>
       </div>
@@ -46,59 +40,58 @@
           <!-- Hero Content (Left) -->
           <div class="lg:col-span-7 order-2 lg:order-1">
             
-            <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-br from-white via-white to-teal-200">
+            <h1 class="text-5xl lg:text-7xl font-extrabold leading-[1.1] mb-6 tracking-tight text-gray-900 drop-shadow-sm">
               How much could you save with solar?
             </h1>
-            <p class="text-2xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300 mb-6 drop-shadow-md">
+            <p class="text-2xl font-medium text-orange-600 mb-6">
               Find out with a free, no-obligation energy assessment.
             </p>
-            <p class="text-lg text-white/70 mb-10 max-w-xl leading-relaxed font-light">
+            <p class="text-lg text-gray-600 mb-10 max-w-xl leading-relaxed font-light">
               We analyse your energy usage, property and solar potential, then show you what the numbers actually look like. No guesswork. No hard sell.
             </p>
             
             <div class="flex flex-col sm:flex-row gap-6 mb-8">
-              <div class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl shadow-lg">
-                <i data-lucide="check-circle" class="w-5 h-5 text-teal-400"></i>
-                <span class="text-xs font-bold tracking-wide text-white/90">FREE ASSESSMENT</span>
+              <div class="flex items-center gap-3 bg-white border border-gray-200 px-4 py-2.5 rounded-xl shadow-sm">
+                <i data-lucide="check-circle" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-xs font-bold tracking-wide text-gray-800">FREE ASSESSMENT</span>
               </div>
-              <div class="flex items-center gap-3 bg-white/5 backdrop-blur-md border border-white/10 px-4 py-2.5 rounded-xl shadow-lg">
-                <i data-lucide="check-circle" class="w-5 h-5 text-teal-400"></i>
-                <span class="text-xs font-bold tracking-wide text-white/90">NO SALES PRESSURE</span>
+              <div class="flex items-center gap-3 bg-white border border-gray-200 px-4 py-2.5 rounded-xl shadow-sm">
+                <i data-lucide="check-circle" class="w-5 h-5 text-orange-500"></i>
+                <span class="text-xs font-bold tracking-wide text-gray-800">NO SALES PRESSURE</span>
               </div>
             </div>
           </div>
 
-          <!-- Form (Right - Liquid Glass Pane) -->
+          <!-- Form (Right - Light Pane) -->
           <div class="lg:col-span-5 relative group lg:w-[95%] lg:ml-auto order-1 lg:order-2 z-20">
             <!-- Glowing border effect -->
-            <!-- Note: pointer-events-none added to prevent intercepting taps on mobile -->
-            <div class="absolute -inset-[2px] bg-gradient-to-r from-teal-500/40 via-cyan-500/40 to-teal-500/40 rounded-[1.25rem] blur-md opacity-60 animate-pulse pointer-events-none lg:animate-none lg:-inset-[1px] lg:bg-gradient-to-b lg:from-teal-500/30 lg:to-blue-500/30 lg:blur-sm lg:opacity-50 lg:group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+            <div class="absolute -inset-[2px] bg-gradient-to-r from-orange-400 via-orange-300 to-orange-400 rounded-[1.25rem] blur-md opacity-30 animate-pulse pointer-events-none lg:animate-none lg:-inset-[1px] lg:bg-gradient-to-b lg:from-orange-400/30 lg:to-orange-200/30 lg:blur-sm lg:opacity-50 lg:group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
 
-            <div class="bg-[#0b1121]/90 lg:bg-[#0b1121]/40 backdrop-blur-md lg:backdrop-blur-2xl border border-white/10 rounded-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] relative z-10 overflow-hidden flex flex-col h-[520px]">
+            <div class="bg-white/90 backdrop-blur-2xl border border-white/80 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] relative z-10 overflow-hidden flex flex-col h-[520px]">
               
-              <!-- Progress Bar (Glass Header) -->
-              <div class="bg-white/[0.02] border-b border-white/10 px-4 sm:px-6 md:px-8 py-4 sm:py-5 relative z-20">
-                <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-white/40 tracking-wider">
+              <!-- Progress Bar -->
+              <div class="bg-white/50 border-b border-gray-100 px-4 sm:px-6 md:px-8 py-4 sm:py-5 relative z-20">
+                <div class="flex justify-between items-center text-[10px] sm:text-xs font-bold text-gray-400 tracking-wider">
                   <div class="flex items-center gap-1.5 sm:gap-2 shrink-0" id="step-indicator-1">
-                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-teal-500 text-white flex items-center justify-center transition-all shadow-[0_0_12px_rgba(20,184,166,0.5)]">1</span>
-                    <span class="hidden sm:inline text-teal-300 transition-colors drop-shadow-md">PROPERTY</span>
+                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-orange-500 text-white flex items-center justify-center transition-all shadow-sm">1</span>
+                    <span class="hidden sm:inline text-orange-600 transition-colors drop-shadow-sm">PROPERTY</span>
                   </div>
-                  <div class="flex-grow h-px bg-teal-500/30 mx-2 sm:mx-3 transition-colors" id="line-1"></div>
+                  <div class="flex-grow h-px bg-orange-200 mx-2 sm:mx-3 transition-colors" id="line-1"></div>
 
                   <div class="flex items-center gap-1.5 sm:gap-2 shrink-0" id="step-indicator-2">
-                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/5 border border-white/10 text-white/40 flex items-center justify-center transition-all">2</span>
+                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-300 text-gray-400 flex items-center justify-center transition-all">2</span>
                     <span class="hidden sm:inline transition-colors">ENERGY</span>
                   </div>
-                  <div class="flex-grow h-px bg-white/10 mx-2 sm:mx-3 transition-colors" id="line-2"></div>
+                  <div class="flex-grow h-px bg-gray-200 mx-2 sm:mx-3 transition-colors" id="line-2"></div>
 
                   <div class="flex items-center gap-1.5 sm:gap-2 shrink-0" id="step-indicator-3">
-                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/5 border border-white/10 text-white/40 flex items-center justify-center transition-all">3</span>
+                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-300 text-gray-400 flex items-center justify-center transition-all">3</span>
                     <span class="hidden sm:inline transition-colors">LOCATION</span>
                   </div>
-                  <div class="flex-grow h-px bg-white/10 mx-2 sm:mx-3 transition-colors" id="line-3"></div>
+                  <div class="flex-grow h-px bg-gray-200 mx-2 sm:mx-3 transition-colors" id="line-3"></div>
 
                   <div class="flex items-center gap-1.5 sm:gap-2 shrink-0" id="step-indicator-4">
-                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white/5 border border-white/10 text-white/40 flex items-center justify-center transition-all">4</span>
+                    <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-white border border-gray-300 text-gray-400 flex items-center justify-center transition-all">4</span>
                     <span class="hidden sm:inline transition-colors">DETAILS</span>
                   </div>
                 </div>
@@ -118,84 +111,114 @@
                   <input type="hidden" name="spend" id="input-spend" value="">
 
                   <!-- Step 1: Property -->
-                  <div id="step-1" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-0 w-full h-full flex flex-col justify-start">
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 tracking-tight">What type of property are you looking at?</h3>
-                    <div class="space-y-3 sm:space-y-4">
-                      <button type="button" class="property-btn w-full text-left px-5 sm:px-6 py-4 sm:py-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] transition-all flex items-center gap-4 group" data-value="Business">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 group-hover:bg-teal-500/20 flex items-center justify-center text-xl sm:text-2xl border border-white/5 transition-colors">🏢</div>
-                        <span class="text-base sm:text-lg font-semibold text-white/90 group-hover:text-white transition-colors">Business</span>
+                  <div id="step-1" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-0 w-full h-full flex flex-col justify-start bg-transparent">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight text-center">I am looking to save money on my...</h3>
+                    <div class="grid grid-cols-2 gap-4 flex-grow pb-4">
+                      <button type="button" class="property-btn w-full h-full flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-md transition-all gap-4 group" data-value="Business">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-50 group-hover:bg-orange-100 flex items-center justify-center text-3xl sm:text-4xl group-hover:scale-110 transition-transform shadow-sm">🏢</div>
+                        <span class="text-base sm:text-lg font-bold text-gray-700 group-hover:text-orange-700 transition-colors">Business</span>
                       </button>
-                      <button type="button" class="property-btn w-full text-left px-5 sm:px-6 py-4 sm:py-5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_20px_rgba(45,212,191,0.15)] transition-all flex items-center gap-4 group" data-value="Home">
-                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/10 group-hover:bg-teal-500/20 flex items-center justify-center text-xl sm:text-2xl border border-white/5 transition-colors">🏠</div>
-                        <span class="text-base sm:text-lg font-semibold text-white/90 group-hover:text-white transition-colors">Home</span>
+                      <button type="button" class="property-btn w-full h-full flex flex-col items-center justify-center p-4 rounded-2xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-md transition-all gap-4 group" data-value="Home">
+                        <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-orange-50 group-hover:bg-orange-100 flex items-center justify-center text-3xl sm:text-4xl group-hover:scale-110 transition-transform shadow-sm">🏠</div>
+                        <span class="text-base sm:text-lg font-bold text-gray-700 group-hover:text-orange-700 transition-colors">Home</span>
                       </button>
                     </div>
                   </div>
 
                   <!-- Step 2: Goal -->
-                  <div id="step-2" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start">
-                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-white/40 hover:text-teal-400 mb-4 sm:mb-6 flex items-center gap-1 uppercase transition-colors w-fit" data-target="1"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 tracking-tight">What are you hoping to achieve?</h3>
-                    <div class="space-y-2 sm:space-y-3">
-                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="Reduce my energy bills">Reduce my energy bills</button>
-                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="Generate my own energy">Generate my own energy</button>
-                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="Battery storage">Battery storage</button>
-                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="Reduce my carbon footprint">Reduce my carbon footprint</button>
-                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="I'm just exploring my options">I'm just exploring my options</button>
+                  <div id="step-2" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start bg-transparent">
+                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-gray-400 hover:text-orange-500 mb-4 sm:mb-6 flex items-center gap-1 uppercase transition-colors w-fit" data-target="1"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">What are you hoping to achieve?</h3>
+                    <div class="space-y-2.5">
+                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="Reduce my energy bills">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">Reduce my energy bills</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="Generate my own energy">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">Generate my own energy</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="Battery storage">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">Battery storage</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="Reduce my carbon footprint">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">Reduce my carbon footprint</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="goal-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="I'm just exploring my options">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">I'm just exploring my options</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
                     </div>
                   </div>
 
                   <!-- Step 3: Spend -->
-                  <div id="step-3" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start">
-                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-white/40 hover:text-teal-400 mb-4 sm:mb-6 flex items-center gap-1 uppercase transition-colors w-fit" data-target="2"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 tracking-tight">Roughly how much do you spend on electricity?</h3>
-                    <div class="space-y-2 sm:space-y-3">
-                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="Under £500/month">Under £500/month</button>
-                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="£500–£1,000/month">£500–£1,000/month</button>
-                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="£1,000–£2,500/month">£1,000–£2,500/month</button>
-                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="£2,500+/month">£2,500+/month</button>
-                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-teal-400/50 hover:shadow-[0_0_15px_rgba(45,212,191,0.1)] transition-all text-white/80 hover:text-white font-medium text-sm sm:text-base" data-value="I'm not sure">I'm not sure</button>
+                  <div id="step-3" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start bg-transparent">
+                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-gray-400 hover:text-orange-500 mb-4 sm:mb-6 flex items-center gap-1 uppercase transition-colors w-fit" data-target="2"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 tracking-tight">Roughly how much do you spend on electricity?</h3>
+                    <div class="space-y-2.5">
+                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="Under £500/month">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">Under £500/month</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="£500–£1,000/month">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">£500–£1,000/month</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="£1,000–£2,500/month">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">£1,000–£2,500/month</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="£2,500+/month">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">£2,500+/month</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
+                      <button type="button" class="spend-btn w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group" data-value="I'm not sure">
+                        <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">I'm not sure</span>
+                        <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+                      </button>
                     </div>
                   </div>
 
                   <!-- Step 4: Details -->
-                  <div id="step-4" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full overflow-hidden flex flex-col justify-start">
-                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-white/40 hover:text-teal-400 mb-3 flex items-center gap-1 uppercase transition-colors w-fit" data-target="3"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
-                    <h3 class="text-xl sm:text-2xl font-bold text-white mb-3 tracking-tight">Where is the property?</h3>
-                    <div class="space-y-2">
+                  <div id="step-4" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full overflow-hidden flex flex-col justify-start bg-transparent">
+                    <button type="button" class="btn-back text-[10px] sm:text-xs font-bold tracking-widest text-gray-400 hover:text-orange-500 mb-3 flex items-center gap-1 uppercase transition-colors w-fit" data-target="3"><i data-lucide="arrow-left" class="w-3 h-3 sm:w-4 sm:h-4"></i> Back</button>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-3 tracking-tight">Where is the property?</h3>
+                    <div class="space-y-2.5">
 
-                      <div class="flex gap-2">
-                        <div class="relative w-1/2">
-                          <i data-lucide="home" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                          <input type="text" id="input-house" name="house" required placeholder="House Name/No." class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                      <div class="flex gap-2.5">
+                        <div class="relative w-1/2 group">
+                          <i data-lucide="home" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                          <input type="text" id="input-house" name="house" required placeholder="House Name/No." class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                         </div>
-                        <div class="relative w-1/2">
-                          <i data-lucide="map-pin" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                          <input type="text" id="input-postcode" name="postcode" required placeholder="Postcode" class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                        <div class="relative w-1/2 group">
+                          <i data-lucide="map-pin" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                          <input type="text" id="input-postcode" name="postcode" required placeholder="Postcode" class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                         </div>
                       </div>
 
-                      <div class="relative">
-                        <i data-lucide="user" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                        <input type="text" id="input-name" name="name" required placeholder="Your Name" class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                      <div class="relative group">
+                        <i data-lucide="user" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                        <input type="text" id="input-name" name="name" required placeholder="Your Name" class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                       </div>
 
-                      <div class="relative hidden" id="business-name-group">
-                        <i data-lucide="building" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                        <input type="text" id="input-business" name="business" placeholder="Business Name" class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                      <div class="relative hidden group" id="business-name-group">
+                        <i data-lucide="building" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                        <input type="text" id="input-business" name="business" placeholder="Business Name" class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                       </div>
 
-                      <div class="relative">
-                        <i data-lucide="phone" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                        <input type="tel" id="input-phone" name="phone" required placeholder="Phone Number" class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                      <div class="relative group">
+                        <i data-lucide="phone" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                        <input type="tel" id="input-phone" name="phone" required placeholder="Phone Number" class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                       </div>
 
-                      <div class="relative">
-                        <i data-lucide="mail" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-white/40"></i>
-                        <input type="email" id="input-email" name="email" required placeholder="Email Address" class="w-full pl-9 pr-3 py-2.5 border border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-teal-400/50 focus:border-teal-400/50 transition-all bg-white/5 text-white placeholder-white/30 backdrop-blur-sm text-sm">
+                      <div class="relative group">
+                        <i data-lucide="mail" class="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-orange-500 transition-colors"></i>
+                        <input type="email" id="input-email" name="email" required placeholder="Email Address" class="w-full pl-10 pr-3 py-2.5 border-2 border-gray-100 rounded-xl focus:outline-none focus:ring-4 focus:ring-orange-500/10 focus:border-orange-400 transition-all bg-white text-gray-900 placeholder-gray-400 text-sm font-medium shadow-sm">
                       </div>
 
-                      <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-bold py-3 px-6 rounded-xl transition-all shadow-[0_0_20px_rgba(20,184,166,0.3)] hover:shadow-[0_0_25px_rgba(20,184,166,0.5)] flex items-center justify-center gap-2 group mt-3 border border-teal-400/30">
+                      <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-3.5 px-6 rounded-xl transition-all shadow-md hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2 group mt-4 border border-orange-400/50">
                         <span class="tracking-wide text-sm">SHOW ME MY SOLAR POTENTIAL</span>
                         <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
                       </button>
@@ -203,26 +226,26 @@
                   </div>
 
                   <!-- Success Step -->
-                  <div id="step-success" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start text-center items-center">
+                  <div id="step-success" class="step-container absolute inset-0 p-6 sm:p-8 pt-6 sm:pt-8 transition-transform duration-300 transform translate-x-full w-full h-full flex flex-col justify-start text-center items-center bg-transparent">
                     <div class="relative mb-8">
-                      <div class="absolute inset-0 bg-teal-500 rounded-full blur-xl opacity-50 animate-pulse"></div>
-                      <div class="w-20 h-20 bg-white/10 border border-white/20 backdrop-blur-md rounded-full flex items-center justify-center relative z-10 shadow-xl">
-                        <i data-lucide="check" class="w-10 h-10 text-teal-400"></i>
+                      <div class="absolute inset-0 bg-orange-500 rounded-full blur-xl opacity-20 animate-pulse"></div>
+                      <div class="w-20 h-20 bg-orange-50 border border-orange-200 rounded-full flex items-center justify-center relative z-10 shadow-sm">
+                        <i data-lucide="check" class="w-10 h-10 text-orange-500"></i>
                       </div>
                     </div>
                     
-                    <h3 class="text-3xl font-extrabold text-white mb-3 tracking-tight drop-shadow-md">Assessment Requested.</h3>
-                    <p class="text-white/70 mb-8 font-light leading-relaxed">An Open Energy specialist will review your property and energy requirements before contacting you.</p>
+                    <h3 class="text-3xl font-extrabold text-gray-900 mb-3 tracking-tight">Assessment Requested.</h3>
+                    <p class="text-gray-600 mb-8 font-light leading-relaxed">An Open Energy specialist will review your property and energy requirements before contacting you.</p>
                     
-                    <div class="space-y-4 text-left w-full max-w-xs mb-8 bg-white/5 border border-white/10 rounded-xl p-5 backdrop-blur-sm">
-                      <div class="flex items-center gap-3 text-white/80 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i> Property & energy review</div>
-                      <div class="flex items-center gap-3 text-white/80 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i> Solar potential assessment</div>
-                      <div class="flex items-center gap-3 text-white/80 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i> Estimated savings</div>
-                      <div class="flex items-center gap-3 text-white/80 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i> Independent advice</div>
-                      <div class="flex items-center gap-3 text-white/80 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i> Local installer when ready</div>
+                    <div class="space-y-4 text-left w-full max-w-xs mb-8 bg-gray-50 border border-gray-200 rounded-xl p-5">
+                      <div class="flex items-center gap-3 text-gray-700 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Property & energy review</div>
+                      <div class="flex items-center gap-3 text-gray-700 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Solar potential assessment</div>
+                      <div class="flex items-center gap-3 text-gray-700 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Estimated savings</div>
+                      <div class="flex items-center gap-3 text-gray-700 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Independent advice</div>
+                      <div class="flex items-center gap-3 text-gray-700 text-sm"><i data-lucide="check-circle-2" class="w-4 h-4 text-orange-500"></i> Local installer when ready</div>
                     </div>
                     
-                    <p class="text-xs font-bold text-teal-400/80 tracking-[0.2em] uppercase">No obligation. No sales pressure.</p>
+                    <p class="text-xs font-bold text-orange-600 tracking-[0.2em] uppercase">No obligation. No sales pressure.</p>
                   </div>
 
                 </form>
@@ -234,16 +257,16 @@
       </div>
     </section>
 
-    <!-- Introduce the Big Differentiator (Liquid Glass Banner) -->
+    <!-- Introduce the Big Differentiator -->
     <section class="py-24 relative z-10">
       <div class="container mx-auto px-6 max-w-5xl">
-        <div class="bg-white/[0.03] backdrop-blur-lg lg:backdrop-blur-3xl border border-white/10 rounded-3xl p-12 md:p-20 text-center shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] relative overflow-hidden group">
+        <div class="bg-white border border-gray-200 rounded-3xl p-12 md:p-20 text-center shadow-xl relative overflow-hidden group">
           <!-- Inner subtle glow -->
-          <div class="absolute inset-0 bg-gradient-to-b from-white/[0.05] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-orange-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
           
-          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-teal-100 to-teal-400">WE DON'T SELL SOLAR SYSTEMS.</h2>
-          <p class="text-2xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-teal-300 to-cyan-300 mb-8 drop-shadow-md">We provide the advice. You decide if and when you want to proceed.</p>
-          <p class="text-xl text-white/60 leading-relaxed max-w-3xl mx-auto font-light">
+          <h2 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-gray-900">WE DON'T SELL SOLAR SYSTEMS.</h2>
+          <p class="text-2xl font-medium text-orange-600 mb-8">We provide the advice. You decide if and when you want to proceed.</p>
+          <p class="text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto font-light">
             Our job is to help you understand whether solar makes financial sense for your property. If you're ready to install, we'll connect you with a suitable local partner.
           </p>
         </div>
@@ -255,40 +278,40 @@
       <div class="container mx-auto px-6 max-w-5xl text-center">
         <div class="inline-flex flex-col items-center justify-center relative">
           <!-- Backlight -->
-          <div class="absolute inset-0 bg-gradient-to-r from-teal-500/30 via-cyan-500/30 to-blue-500/30 blur-[80px] rounded-full"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-orange-200 via-orange-300 to-red-200 blur-[80px] rounded-full opacity-50"></div>
           
-          <div class="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-teal-200 via-teal-400 to-cyan-600 mb-6 drop-shadow-lg relative z-10 tracking-tighter">
+          <div class="text-6xl md:text-8xl font-extrabold text-transparent bg-clip-text bg-gradient-to-br from-orange-500 via-orange-600 to-red-600 mb-6 relative z-10 tracking-tighter">
             £100,000+
           </div>
-          <p class="text-xl text-white/70 font-light max-w-2xl mx-auto relative z-10">
+          <p class="text-xl text-gray-700 font-light max-w-2xl mx-auto relative z-10">
             saved by business owners last month through Open Energy's free consultancy.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Local Installer Network (Glass Cards) -->
-    <section class="py-24 relative z-10 border-t border-white/5 bg-[#0b1121]/50 backdrop-blur-md">
+    <!-- Local Installer Network -->
+    <section class="py-24 relative z-10 border-t border-gray-200 bg-white">
       <div class="container mx-auto px-6 max-w-7xl">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">Your installer. Your area. When you're ready.</h2>
-            <p class="text-lg text-white/60 mb-10 leading-relaxed font-light">
+            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">Your installer. Your area. When you're ready.</h2>
+            <p class="text-lg text-gray-600 mb-10 leading-relaxed font-light">
               We match you with suitable local installation partners only when you decide to proceed. No hard sells, no cold calling, just a seamless transition from advice to installation.
             </p>
-            <div class="bg-gradient-to-r from-teal-900/40 to-transparent border-l-2 border-teal-500 p-6 rounded-r-2xl backdrop-blur-sm">
+            <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-2xl">
               <div class="flex items-start gap-5">
-                <div class="bg-teal-500/20 p-3 rounded-xl border border-teal-500/30 shrink-0">
-                  <i data-lucide="zap" class="w-6 h-6 text-teal-400"></i>
+                <div class="bg-white p-3 rounded-xl border border-orange-200 shrink-0 shadow-sm">
+                  <i data-lucide="zap" class="w-6 h-6 text-orange-500"></i>
                 </div>
                 <div>
-                  <p class="text-white/90 font-medium text-lg leading-snug">Our current record is just <br/><span class="font-bold text-teal-400 text-3xl tracking-tight">9 minutes</span><br/><span class="text-white/60 text-base font-light">from client to installer.</span></p>
+                  <p class="text-gray-900 font-medium text-lg leading-snug">Our current record is just <br/><span class="font-bold text-orange-600 text-3xl tracking-tight">9 minutes</span><br/><span class="text-gray-500 text-base font-light">from client to installer.</span></p>
                 </div>
               </div>
             </div>
           </div>
-          <div class="relative h-[450px] rounded-3xl overflow-hidden shadow-[0_8px_32px_0_rgba(0,0,0,0.5)] border border-white/10 group">
-             <div class="absolute inset-0 bg-teal-500/10 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
+          <div class="relative h-[450px] rounded-3xl overflow-hidden shadow-xl border border-gray-200 group">
+             <div class="absolute inset-0 bg-orange-500/10 mix-blend-overlay z-10 group-hover:bg-transparent transition-colors duration-500"></div>
              <img src="https://coresg-normal.trae.ai/api/ide/v1/text_to_image?prompt=A%20professional%2C%20realistic%20photograph%20of%20a%20modern%20British%20home%20and%20commercial%20building%20with%20sleek%20solar%20panels%20on%20the%20roof%2C%20a%20friendly%20consultant%20or%20installer%20shaking%20hands%20with%20a%20business%20owner%2C%20high-end%20cinematic%20lighting%2C%20corporate%20and%20trustworthy%2C%20clean%20and%20modern%20aesthetic&image_size=landscape_4_3" loading="lazy" alt="Local Installation Consultant" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
           </div>
         </div>
@@ -299,61 +322,61 @@
     <section class="py-24 relative z-10">
       <div class="container mx-auto px-6 max-w-7xl">
         <div class="text-center mb-20">
-          <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">How Open Energy Works</h2>
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight">How Open Energy Works</h2>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           
-          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
-            <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">1</div>
-            <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">TELL US ABOUT YOUR PROPERTY</h3>
-            <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">A few quick questions help us understand your energy needs.</p>
+          <div class="bg-white border border-gray-200 p-8 rounded-3xl hover:bg-orange-50 hover:border-orange-200 transition-all duration-500 relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full blur-[50px] group-hover:bg-orange-200 transition-colors duration-500"></div>
+            <div class="text-7xl font-black text-gray-100 absolute top-4 right-6 pointer-events-none group-hover:text-orange-200 transition-colors duration-500">1</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 relative z-10 tracking-tight group-hover:text-orange-600 transition-colors">TELL US ABOUT YOUR PROPERTY</h3>
+            <p class="text-gray-600 leading-relaxed relative z-10 font-light text-sm group-hover:text-gray-800 transition-colors">A few quick questions help us understand your energy needs.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
-            <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">2</div>
-            <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">WE ANALYSE THE NUMBERS</h3>
-            <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">We review your energy usage, property and solar potential.</p>
+          <div class="bg-white border border-gray-200 p-8 rounded-3xl hover:bg-orange-50 hover:border-orange-200 transition-all duration-500 relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full blur-[50px] group-hover:bg-orange-200 transition-colors duration-500"></div>
+            <div class="text-7xl font-black text-gray-100 absolute top-4 right-6 pointer-events-none group-hover:text-orange-200 transition-colors duration-500">2</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 relative z-10 tracking-tight group-hover:text-orange-600 transition-colors">WE ANALYSE THE NUMBERS</h3>
+            <p class="text-gray-600 leading-relaxed relative z-10 font-light text-sm group-hover:text-gray-800 transition-colors">We review your energy usage, property and solar potential.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
-            <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">3</div>
-            <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">YOU GET HONEST ADVICE</h3>
-            <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">We explain what makes financial sense, without pressure.</p>
+          <div class="bg-white border border-gray-200 p-8 rounded-3xl hover:bg-orange-50 hover:border-orange-200 transition-all duration-500 relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full blur-[50px] group-hover:bg-orange-200 transition-colors duration-500"></div>
+            <div class="text-7xl font-black text-gray-100 absolute top-4 right-6 pointer-events-none group-hover:text-orange-200 transition-colors duration-500">3</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 relative z-10 tracking-tight group-hover:text-orange-600 transition-colors">YOU GET HONEST ADVICE</h3>
+            <p class="text-gray-600 leading-relaxed relative z-10 font-light text-sm group-hover:text-gray-800 transition-colors">We explain what makes financial sense, without pressure.</p>
           </div>
 
-          <div class="bg-white/[0.02] backdrop-blur-md lg:backdrop-blur-xl border border-white/10 p-8 rounded-3xl hover:bg-white/[0.05] hover:border-teal-500/30 transition-all duration-500 relative group overflow-hidden shadow-lg hover:shadow-[0_0_30px_rgba(20,184,166,0.15)] hover:-translate-y-1">
-            <div class="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full blur-[50px] group-hover:bg-cyan-500/30 transition-colors duration-500"></div>
-            <div class="text-7xl font-black text-white/[0.03] absolute top-4 right-6 pointer-events-none group-hover:text-teal-400/10 transition-colors duration-500">4</div>
-            <h3 class="text-xl font-bold text-white mb-4 relative z-10 tracking-tight group-hover:text-teal-300 transition-colors">WE MATCH YOU LOCALLY</h3>
-            <p class="text-white/60 leading-relaxed relative z-10 font-light text-sm group-hover:text-white/80 transition-colors">When you're ready, we connect you with an appropriate local installer.</p>
+          <div class="bg-white border border-gray-200 p-8 rounded-3xl hover:bg-orange-50 hover:border-orange-200 transition-all duration-500 relative group overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-1">
+            <div class="absolute top-0 right-0 w-32 h-32 bg-orange-100 rounded-full blur-[50px] group-hover:bg-orange-200 transition-colors duration-500"></div>
+            <div class="text-7xl font-black text-gray-100 absolute top-4 right-6 pointer-events-none group-hover:text-orange-200 transition-colors duration-500">4</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4 relative z-10 tracking-tight group-hover:text-orange-600 transition-colors">WE MATCH YOU LOCALLY</h3>
+            <p class="text-gray-600 leading-relaxed relative z-10 font-light text-sm group-hover:text-gray-800 transition-colors">When you're ready, we connect you with an appropriate local installer.</p>
           </div>
 
         </div>
       </div>
     </section>
 
-    <!-- Final CTA (Glass Panel) -->
+    <!-- Final CTA -->
     <section class="py-24 relative z-10 mb-10">
       <div class="container mx-auto px-6 max-w-4xl text-center relative">
-        <div class="absolute inset-0 bg-teal-600/10 blur-[100px] rounded-full pointer-events-none"></div>
-        <div class="bg-white/[0.03] backdrop-blur-md lg:backdrop-blur-2xl border border-white/10 rounded-3xl p-12 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] relative z-10">
-          <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">How much could solar save you?</h2>
-          <p class="text-xl text-teal-300 mb-10 font-light">Find out with a free, no-obligation Open Energy assessment.</p>
+        <div class="absolute inset-0 bg-orange-200 blur-[100px] rounded-full pointer-events-none opacity-50"></div>
+        <div class="bg-white border border-gray-200 rounded-3xl p-12 shadow-2xl relative z-10">
+          <h2 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">How much could solar save you?</h2>
+          <p class="text-xl text-orange-600 mb-10 font-light">Find out with a free, no-obligation Open Energy assessment.</p>
           
-          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-teal-500 to-teal-600 hover:from-teal-400 hover:to-teal-500 text-white font-bold py-5 px-10 rounded-2xl transition-all text-lg group mb-10 shadow-[0_0_30px_rgba(20,184,166,0.3)] hover:shadow-[0_0_40px_rgba(20,184,166,0.5)] border border-teal-400/30">
+          <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold py-5 px-10 rounded-2xl transition-all text-lg group mb-10 shadow-lg hover:shadow-xl border border-orange-400/30">
             <span class="tracking-wide">GET MY FREE ASSESSMENT</span>
             <i data-lucide="arrow-right" class="w-6 h-6 group-hover:translate-x-1 transition-transform"></i>
           </button>
 
-          <div class="flex flex-wrap justify-center gap-6 text-xs font-bold tracking-widest text-white/40 uppercase">
+          <div class="flex flex-wrap justify-center gap-6 text-xs font-bold tracking-widest text-gray-400 uppercase">
             <span>FREE</span>
-            <span class="text-white/20">•</span>
+            <span class="text-gray-300">•</span>
             <span>NO OBLIGATION</span>
-            <span class="text-white/20">•</span>
+            <span class="text-gray-300">•</span>
             <span>NO SALES PRESSURE</span>
           </div>
         </div>
@@ -361,20 +384,22 @@
     </section>
 
     <!-- Bottom Footer -->
-    <footer class="mt-auto py-8 border-t border-white/10 bg-[#0b1121]/80 backdrop-blur-xl relative z-10">
+    <footer class="mt-auto py-8 border-t border-gray-200 bg-white relative z-10">
       <div class="container mx-auto px-6 max-w-7xl flex flex-col md:flex-row items-center justify-between gap-6">
         <div class="flex items-center">
           <a href="/" class="block">
-            <img src="/oem-logo.png" loading="lazy" alt="Open Energy Services Logo" class="h-10 w-auto scale-150 origin-left opacity-50 hover:opacity-100 transition-opacity brightness-0 invert" />
+            <img src="/oem-logo.png" loading="lazy" alt="Open Energy Services Logo" class="h-10 w-auto scale-150 origin-left opacity-90 hover:opacity-100 transition-opacity" />
           </a>
         </div>
         
-        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium text-white/40">
-          <a href="mailto:info@openenergyservices.co.uk" class="hover:text-teal-400 transition-colors">info@openenergyservices.co.uk</a>
-          <span class="hidden md:inline text-white/10">|</span>
-          <a href="tel:+441615245535" class="hover:text-teal-400 transition-colors">+44 161 524 5535</a>
-          <span class="hidden md:inline text-white/10">|</span>
-          <a href="https://openenergyservices.co.uk" class="hover:text-teal-400 transition-colors">openenergyservices.co.uk</a>
+        <div class="flex flex-wrap justify-center gap-x-8 gap-y-3 text-sm font-medium text-gray-500 items-center">
+          <a href="mailto:info@openenergyservices.co.uk" class="hover:text-orange-500 transition-colors">info@openenergyservices.co.uk</a>
+          <span class="hidden md:inline text-gray-300">|</span>
+          <a href="tel:+441615245535" class="hover:text-orange-500 transition-colors">+44 161 524 5535</a>
+          <span class="hidden md:inline text-gray-300">|</span>
+          <a href="https://openenergyservices.co.uk" class="hover:text-orange-500 transition-colors">openenergyservices.co.uk</a>
+          <span class="hidden md:inline text-gray-300">|</span>
+          <button id="staff-btn" class="hover:text-orange-500 transition-colors font-bold underline">Staff</button>
         </div>
       </div>
     </footer>
@@ -388,23 +413,31 @@
         background: transparent;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb {
-        background-color: rgba(255, 255, 255, 0.1);
+        background-color: rgba(249, 115, 22, 0.2);
         border-radius: 20px;
       }
       .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-        background-color: rgba(20, 184, 166, 0.5);
+        background-color: rgba(249, 115, 22, 0.5);
       }
     </style>
 
-    <!-- Social Proof Overlay Pill -->
-  <div id="social-proof-pill" class="fixed bottom-6 right-6 z-50 transform transition-all duration-500 translate-y-10 opacity-0 bg-[#0b1121]/90 lg:bg-[#0b1121]/70 backdrop-blur-md lg:backdrop-blur-xl border border-teal-500/30 shadow-[0_4px_20px_rgba(20,184,166,0.2)] rounded-full px-5 py-3 flex items-center gap-3">
-    <div class="w-8 h-8 rounded-full bg-teal-500/20 flex items-center justify-center shrink-0 border border-teal-500/30">
-      <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-400"></i>
+    <!-- Staff Dashboard Modal -->
+    <div id="staff-modal" class="hidden fixed inset-0 z-[100] bg-gray-900/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 transition-opacity">
+      <div class="bg-white border border-gray-200 rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] flex flex-col overflow-hidden">
+        <div class="p-6 border-b border-gray-200 flex justify-between items-center bg-gray-50">
+          <h2 class="text-2xl font-bold text-gray-900 flex items-center gap-3">
+            <i data-lucide="zap" class="text-orange-500 w-6 h-6"></i>
+            Staff Dashboard
+          </h2>
+          <button id="close-staff" class="text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div class="p-6 overflow-y-auto flex-grow" id="staff-content">
+          <!-- Staff content injected here -->
+        </div>
+      </div>
     </div>
-    <p id="social-proof-text" class="text-white/90 text-sm font-medium tracking-tight m-0">
-      <span class="font-bold text-white">Tomas</span> in Liverpool saved <span class="text-teal-400 font-bold">£85</span> a month.
-    </p>
-  </div>
 
   <script type="module" src="/src/main.ts"></script>
 </body>
