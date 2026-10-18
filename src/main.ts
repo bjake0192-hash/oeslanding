@@ -34,6 +34,7 @@ interface TrackingData {
   lastActive: string;
   dropoffStep: number;
   data: Record<string, string>;
+  events: string[];
 }
 
 let userIp = 'unknown';
@@ -43,9 +44,24 @@ async function initTracking() {
     const res = await fetch('https://api.ipify.org?format=json');
     const data = await res.json();
     userIp = data.ip || 'unknown';
+    trackEvent('Landing page viewed');
     saveTrackingState();
   } catch (e) {
     console.error('Could not fetch IP for tracking');
+  }
+}
+
+function trackEvent(eventName: string) {
+  if (userIp === 'unknown') return;
+  const stats: TrackingData[] = JSON.parse(localStorage.getItem('landing_stats') || '[]');
+  let currentSession = stats.find(s => s.ip === userIp);
+  
+  if (currentSession) {
+    if (!currentSession.events) currentSession.events = [];
+    if (!currentSession.events.includes(eventName)) {
+      currentSession.events.push(eventName);
+      localStorage.setItem('landing_stats', JSON.stringify(stats));
+    }
   }
 }
 
@@ -60,12 +76,14 @@ function saveTrackingState(fieldUpdate?: { key: string, value: string }) {
       ip: userIp,
       lastActive: new Date().toISOString(),
       dropoffStep: currentStep,
-      data: {}
+      data: {},
+      events: []
     };
     stats.push(currentSession);
   } else {
     currentSession.lastActive = new Date().toISOString();
     currentSession.dropoffStep = currentStep;
+    if (!currentSession.events) currentSession.events = [];
   }
 
   if (fieldUpdate) {
@@ -155,11 +173,36 @@ function goToStep(targetStep: number | 'success') {
   }
 
   if (targetStep !== 'success') {
+    if (targetStep > currentStep) {
+      if (currentStep === 1) trackEvent('Assessment started');
+      trackEvent(`Assessment step ${currentStep} completed`);
+    }
     currentStep = targetStep as number;
     updateProgress(currentStep);
     saveTrackingState();
   } else {
+    trackEvent(`Assessment step ${currentStep} completed`);
+    trackEvent('Assessment submitted successfully');
     currentStep = 5;
+    
+    // Update savings estimate
+    const spendVal = (document.getElementById('input-spend') as HTMLInputElement)?.value;
+    const savingsEl = document.getElementById('savings-estimate');
+    if (savingsEl) {
+      if (!spendVal || spendVal === 'Not sure') {
+        savingsEl.innerText = 'Up to 80%';
+      } else {
+        const matches = spendVal.replace(/£|,/g, '').match(/\d+/g);
+        if (matches && matches.length > 0) {
+          const maxVal = Math.max(...matches.map(Number));
+          const savings = Math.round(maxVal * 0.8);
+          savingsEl.innerText = `Up to £${savings.toLocaleString()}`;
+        } else {
+          savingsEl.innerText = 'Up to 80%';
+        }
+      }
+    }
+    
     saveTrackingState();
   }
 }
@@ -188,51 +231,81 @@ const inputPropertyType = document.getElementById('input-property-type') as HTML
 const businessNameGroup = document.getElementById('business-name-group');
 const inputBusiness = document.getElementById('input-business') as HTMLInputElement;
 
+const step2Options = document.getElementById('step-2-options');
+const step3Options = document.getElementById('step-3-options');
+
+function renderOptions(container: HTMLElement | null, options: string[], inputEl: HTMLInputElement, nextStep: number) {
+  if (!container) return;
+  container.innerHTML = '';
+  options.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'w-full text-left px-4 sm:px-5 py-3 sm:py-3.5 rounded-xl border-2 border-gray-100 bg-white hover:border-orange-400 hover:bg-orange-50/50 hover:shadow-sm transition-all flex items-center justify-between group';
+    btn.innerHTML = `
+      <span class="text-gray-700 font-semibold group-hover:text-orange-700 text-sm sm:text-base transition-colors">${opt}</span>
+      <div class="w-5 h-5 rounded-full border-2 border-gray-200 group-hover:border-orange-500 flex items-center justify-center transition-colors shrink-0 ml-4"><div class="w-2.5 h-2.5 rounded-full bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></div></div>
+    `;
+    btn.addEventListener('click', () => {
+      inputEl.value = opt;
+      saveTrackingState({ key: inputEl.name, value: opt });
+      goToStep(nextStep);
+    });
+    container.appendChild(btn);
+  });
+}
+
 propertyBtns.forEach(btn => {
   btn.addEventListener('click', (e) => {
     const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
     if (val) {
       inputPropertyType.value = val;
       saveTrackingState({ key: 'property_type', value: val });
-      if (val === 'Business') {
+      
+      const inputGoal = document.getElementById('input-goal') as HTMLInputElement;
+      const inputSpend = document.getElementById('input-spend') as HTMLInputElement;
+
+      if (val === 'My Business') {
         businessNameGroup?.classList.remove('hidden');
         inputBusiness.required = true;
+        
+        renderOptions(step2Options, [
+          "Reduce business energy costs",
+          "Explore solar and battery storage",
+          "Assess my property's solar potential",
+          "I'm not sure yet"
+        ], inputGoal, 3);
+
+        renderOptions(step3Options, [
+          "Under £500",
+          "£500–£1,000",
+          "£1,000–£2,500",
+          "£2,500–£5,000",
+          "£5,000+",
+          "Not sure"
+        ], inputSpend, 4);
+        
       } else {
         businessNameGroup?.classList.add('hidden');
         inputBusiness.required = false;
         inputBusiness.value = '';
+        
+        renderOptions(step2Options, [
+          "Reduce my electricity bills",
+          "Explore solar and battery storage",
+          "Find out if solar suits my property",
+          "I'm not sure yet"
+        ], inputGoal, 3);
+
+        renderOptions(step3Options, [
+          "Under £100",
+          "£100–£150",
+          "£150–£200",
+          "£200–£300",
+          "£300+",
+          "Not sure"
+        ], inputSpend, 4);
       }
       goToStep(2);
-    }
-  });
-});
-
-// Step 2: Goal
-const goalBtns = document.querySelectorAll('.goal-btn');
-const inputGoal = document.getElementById('input-goal') as HTMLInputElement;
-
-goalBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
-    if (val) {
-      inputGoal.value = val;
-      saveTrackingState({ key: 'goal', value: val });
-      goToStep(3);
-    }
-  });
-});
-
-// Step 3: Spend
-const spendBtns = document.querySelectorAll('.spend-btn');
-const inputSpend = document.getElementById('input-spend') as HTMLInputElement;
-
-spendBtns.forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    const val = (e.currentTarget as HTMLElement).getAttribute('data-value');
-    if (val) {
-      inputSpend.value = val;
-      saveTrackingState({ key: 'spend', value: val });
-      goToStep(4);
     }
   });
 });
@@ -274,8 +347,11 @@ backBtns.forEach(btn => {
 const form = document.getElementById('assessment-form') as HTMLFormElement;
 const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
 
-form.addEventListener('submit', () => {
-  (window as any).submitted = true;
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const originalBtnContent = submitBtn.innerHTML;
+  
   submitBtn.innerHTML = `
     <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
       <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -284,11 +360,28 @@ form.addEventListener('submit', () => {
     <span>PROCESSING...</span>
   `;
   submitBtn.disabled = true;
-});
 
-(window as any).showSuccessStep = () => {
-  goToStep('success');
-};
+  try {
+    const formData = new FormData(form);
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      goToStep('success');
+    } else {
+      throw new Error('Submission failed');
+    }
+  } catch (error) {
+    alert('Sorry, there was an error submitting your request. Please try again.');
+    submitBtn.innerHTML = originalBtnContent;
+    submitBtn.disabled = false;
+  }
+});
 
 // --- Social Proof Overlay Pill Logic ---
 // Disabled per request
@@ -371,6 +464,7 @@ function initStaffDashboard() {
             <tr>
               <th class="px-4 py-2 rounded-tl-lg">IP / Date</th>
               <th class="px-4 py-2">Dropoff Step</th>
+              <th class="px-4 py-2">Events</th>
               <th class="px-4 py-2 rounded-tr-lg">Captured Data</th>
             </tr>
           </thead>
@@ -384,6 +478,13 @@ function initStaffDashboard() {
         dataHtml += `<div class="mb-1"><span class="font-semibold text-orange-600">${k}:</span> ${v}</div>`;
       }
       
+      let eventsHtml = '';
+      if (s.events && s.events.length > 0) {
+        s.events.forEach(e => {
+          eventsHtml += `<div class="mb-1 text-xs px-2 py-0.5 bg-blue-50 text-blue-700 rounded inline-block whitespace-nowrap">${e}</div><br>`;
+        });
+      }
+      
       html += `
         <tr class="hover:bg-gray-50">
           <td class="px-4 py-3 whitespace-nowrap">
@@ -392,6 +493,9 @@ function initStaffDashboard() {
           </td>
           <td class="px-4 py-3">
             <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-bold">Step ${s.dropoffStep}</span>
+          </td>
+          <td class="px-4 py-3">
+            ${eventsHtml || '-'}
           </td>
           <td class="px-4 py-3">
             ${dataHtml || '<span class="text-gray-400 italic">No fields filled</span>'}
