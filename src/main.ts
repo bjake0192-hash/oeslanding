@@ -1,5 +1,11 @@
 import './style.css'
 import { createIcons, CheckCircle, ShieldCheck, ArrowRight, ArrowLeft, Building, Home, MapPin, User, Phone, Mail, Check, CheckCircle2, Zap, Lock } from 'lucide';
+import { createClient } from '@supabase/supabase-js';
+
+// Supabase configuration
+const supabaseUrl = 'https://hidzwgnqarmbetpwxmcw.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpZHp3Z25xYXJtYmV0cHd4bWN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4Nzc3NzgsImV4cCI6MjA5MjQ1Mzc3OH0.34PxfUvJPOWfYlCPleU30KJz91kbeg4UuPq_0G_YQzM';
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 function initIcons() {
   createIcons({
@@ -39,16 +45,26 @@ interface TrackingData {
 
 let userIp = 'unknown';
 
+async function getSessionId() {
+  let sessionId = localStorage.getItem('oes_session_id');
+  if (!sessionId) {
+    sessionId = 'session_' + Math.random().toString(36).substring(2, 15);
+    localStorage.setItem('oes_session_id', sessionId);
+  }
+  return sessionId;
+}
+
 async function initTracking() {
   try {
     const res = await fetch('https://api.ipify.org?format=json');
     const data = await res.json();
-    userIp = data.ip || 'unknown';
-    trackEvent('Landing page viewed');
-    saveTrackingState();
+    userIp = data.ip || await getSessionId();
   } catch (e) {
-    console.error('Could not fetch IP for tracking');
+    console.error('Could not fetch IP for tracking, using fallback session ID');
+    userIp = await getSessionId();
   }
+  trackEvent('Landing page viewed');
+  saveTrackingState();
 }
 
 function trackEvent(eventName: string) {
@@ -61,7 +77,55 @@ function trackEvent(eventName: string) {
     if (!currentSession.events.includes(eventName)) {
       currentSession.events.push(eventName);
       localStorage.setItem('landing_stats', JSON.stringify(stats));
+      syncToSupabase(currentSession);
+
+      // Fire Meta Pixel events
+      if (typeof (window as any).fbq === 'function') {
+        if (eventName === 'Assessment submitted successfully') {
+          (window as any).fbq('track', 'Lead');
+        } else if (eventName !== 'Landing page viewed') {
+          // Track intermediate steps as Custom Events
+          (window as any).fbq('trackCustom', eventName);
+        }
+      }
     }
+  }
+}
+
+async function syncToSupabase(session: TrackingData) {
+  try {
+    // Check if record exists
+    const { data: existingData } = await supabase
+      .from('tracking_data')
+      .select('id')
+      .eq('ip', session.ip)
+      .single();
+
+    if (existingData) {
+      // Update
+      await supabase
+        .from('tracking_data')
+        .update({
+          last_active: session.lastActive,
+          dropoff_step: session.dropoffStep,
+          data: session.data,
+          events: session.events
+        })
+        .eq('ip', session.ip);
+    } else {
+      // Insert
+      await supabase
+        .from('tracking_data')
+        .insert({
+          ip: session.ip,
+          last_active: session.lastActive,
+          dropoff_step: session.dropoffStep,
+          data: session.data,
+          events: session.events
+        });
+    }
+  } catch (err) {
+    console.error('Error syncing to Supabase:', err);
   }
 }
 
@@ -100,6 +164,7 @@ function saveTrackingState(fieldUpdate?: { key: string, value: string }) {
   });
 
   localStorage.setItem('landing_stats', JSON.stringify(stats));
+  syncToSupabase(currentSession);
 }
 
 // Hook form inputs to save state
@@ -446,66 +511,75 @@ function initStaffDashboard() {
     });
   }
 
-  function renderStaffData() {
-    const stats: TrackingData[] = JSON.parse(localStorage.getItem('landing_stats') || '[]');
-    
-    if (stats.length === 0) {
-      staffContent!.innerHTML = '<p class="text-gray-500">No visitor data recorded yet.</p>';
-      return;
-    }
+  async function renderStaffData() {
+    try {
+      const { data: dbStats, error } = await supabase
+        .from('tracking_data')
+        .select('*')
+        .order('last_active', { ascending: false });
 
-    // Sort by most recent
-    stats.sort((a, b) => new Date(b.lastActive).getTime() - new Date(a.lastActive).getTime());
+      if (error) throw error;
 
-    let html = `
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm text-gray-700">
-          <thead class="bg-gray-100 text-gray-900">
-            <tr>
-              <th class="px-4 py-2 rounded-tl-lg">IP / Date</th>
-              <th class="px-4 py-2">Dropoff Step</th>
-              <th class="px-4 py-2">Events</th>
-              <th class="px-4 py-2 rounded-tr-lg">Captured Data</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-100">
-    `;
-
-    stats.forEach(s => {
-      const date = new Date(s.lastActive).toLocaleString();
-      let dataHtml = '';
-      for (const [k, v] of Object.entries(s.data)) {
-        dataHtml += `<div class="mb-1"><span class="font-semibold text-orange-600">${k}:</span> ${v}</div>`;
+      if (!dbStats || dbStats.length === 0) {
+        staffContent!.innerHTML = '<p class="text-gray-500">No visitor data recorded yet.</p>';
+        return;
       }
-      
-      let eventsHtml = '';
-      if (s.events && s.events.length > 0) {
-        s.events.forEach(e => {
-          eventsHtml += `<div class="mb-1 text-xs px-2 py-0.5 bg-blue-50 text-blue-700 rounded inline-block whitespace-nowrap">${e}</div><br>`;
-        });
-      }
-      
-      html += `
-        <tr class="hover:bg-gray-50">
-          <td class="px-4 py-3 whitespace-nowrap">
-            <div class="font-bold text-gray-900">${s.ip}</div>
-            <div class="text-xs text-gray-500">${date}</div>
-          </td>
-          <td class="px-4 py-3">
-            <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-bold">Step ${s.dropoffStep}</span>
-          </td>
-          <td class="px-4 py-3">
-            ${eventsHtml || '-'}
-          </td>
-          <td class="px-4 py-3">
-            ${dataHtml || '<span class="text-gray-400 italic">No fields filled</span>'}
-          </td>
-        </tr>
+
+      let html = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-gray-700">
+            <thead class="bg-gray-100 text-gray-900">
+              <tr>
+                <th class="px-4 py-2 rounded-tl-lg">IP / Session</th>
+                <th class="px-4 py-2">Dropoff Step</th>
+                <th class="px-4 py-2">Events</th>
+                <th class="px-4 py-2 rounded-tr-lg">Captured Data</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
       `;
-    });
 
-    html += `</tbody></table></div>`;
-    staffContent!.innerHTML = html;
+      dbStats.forEach(s => {
+        const date = new Date(s.last_active).toLocaleString();
+        let dataHtml = '';
+        for (const [k, v] of Object.entries(s.data || {})) {
+          dataHtml += `<div class="mb-1"><span class="font-semibold text-orange-600">${k}:</span> ${v}</div>`;
+        }
+        
+        let eventsHtml = '';
+        if (s.events && s.events.length > 0) {
+          s.events.forEach((e: string) => {
+            eventsHtml += `<div class="mb-1 text-xs px-2 py-0.5 bg-blue-50 text-blue-700 rounded inline-block whitespace-nowrap">${e}</div><br>`;
+          });
+        }
+        
+        html += `
+          <tr class="hover:bg-gray-50">
+            <td class="px-4 py-3 whitespace-nowrap">
+              <div class="font-bold text-gray-900">${s.ip.startsWith('session_') ? 'Hidden (Ad-block)' : s.ip}</div>
+              <div class="text-xs text-gray-500">${date}</div>
+              ${s.ip.startsWith('session_') ? `<div class="text-[10px] text-gray-400 font-mono mt-1">${s.ip.substring(0, 15)}...</div>` : ''}
+            </td>
+            <td class="px-4 py-3">
+              <span class="px-2 py-1 bg-orange-100 text-orange-800 rounded-full text-xs font-bold">Step ${s.dropoff_step}</span>
+            </td>
+            <td class="px-4 py-3">
+              ${eventsHtml || '-'}
+            </td>
+            <td class="px-4 py-3">
+              ${dataHtml || '<span class="text-gray-400 italic">No fields filled</span>'}
+            </td>
+          </tr>
+        `;
+      });
+
+      html += `</tbody></table></div>`;
+      staffContent!.innerHTML = html;
+
+    } catch (err) {
+      console.error('Error fetching staff data from Supabase:', err);
+      staffContent!.innerHTML = '<p class="text-red-500">Error loading data from database. Please check console.</p>';
+    }
   }
 }
 
